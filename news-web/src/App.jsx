@@ -14,25 +14,26 @@ import Button from "@mui/material/Button";
 function App() {
   const [data, setData] = useState(null);
 
-  // const baseUrl =
-  //   "https://newsapi.org/v2/top-headlines?country=us&apiKey=";
+  const baseUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${
+    import.meta.env.API_KEY
+  }`;
   useEffect(() => {
-    // axios
-    //   .get(baseUrl)
-    //   .then((result) => {
-    //     const sorted = result.data.articles.sort(
-    //       (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
-    //     );
-    //     setData(sorted);
-    //   })
-    //   .catch((err) => console.log(err));
+    axios
+      .get(baseUrl)
+      .then((result) => {
+        const sorted = result.data.articles.sort(
+          (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
+        );
+        setData(sorted);
+      })
+      .catch((err) => console.log(err));
 
-    const sorted = articles.sort(
-      (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
-    );
-    console.log(sorted);
-    setData(sorted);
-  }, [data]);
+    // const sorted = articles.sort(
+    //   (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
+    // );
+    // console.log(sorted);
+    // setData(sorted);
+  }, [baseUrl, data]);
 
   return (
     <div style={{ width: "100%" }}>
