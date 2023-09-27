@@ -27,12 +27,13 @@ function App() {
         setData(sorted);
       })
       .catch((err) => console.log(err));
-
-    // const sorted = articles.sort(
-    //   (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
-    // );
-    // console.log(sorted);
-    // setData(sorted);
+    if (data == null) {
+      const sorted = articles.sort(
+        (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
+      );
+      console.log(sorted);
+      setData(sorted);
+    }
   }, [baseUrl, data]);
 
   return (
